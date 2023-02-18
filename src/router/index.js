@@ -18,9 +18,9 @@ import PostById from '../views/account/PostById.vue'
 const routes = [
   {
     path: '/',
-    beforeEnter:(to,from,next) =>{
-      useUserStore().id? next('/') : next('/dashboard')
-    },
+    // beforeEnter:(to,from,next) =>{
+    //   useUserStore().id? next('/') : next('/dashboard')
+    // },
     name: 'home',
     component: HomeView
   },

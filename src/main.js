@@ -11,17 +11,17 @@ import { useStyleStore } from './store/style.js'
 import { darkModeKey, styleKey } from "@/config.js";
 
 
-import { useMainStore } from "@/store/main.js";
+// import { useMainStore } from "@/store/main.js";
 
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
-const mainStore = useMainStore(pinia);
+// const mainStore = useMainStore(pinia);
 const styleStore = useStyleStore(pinia);
 
 /* Fetch sample data */
-mainStore.fetch("clients");
-mainStore.fetch("history");
+// mainStore.fetch("clients");
+// mainStore.fetch("history");
 /* App style */
 styleStore.setStyle(localStorage[styleKey] ?? "basic");
 
