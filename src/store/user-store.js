@@ -14,12 +14,13 @@ export const useUserStore = defineStore('user', {
   }),
   actions: {
      setUserDetails(res){
-        console.log(res.data)
-        this.$state.id= res.data.user.id
-        this.$state.token= res.data.token
-        this.$state.firstName= res.data.user.first_name
-        this.$state.lastName= res.data.user.last_name
-        this.$state.email= res.data.user.email
+        const {data} = res.data;
+        console.log(data)
+        this.$state.id= data.user.id
+        this.$state.token= data.token
+        this.$state.firstName= data.user.first_name
+        this.$state.lastName= data.user.last_name
+        this.$state.email= data.user.email
         // this.$state.location= res.data.user.location
         // this.$state.description= res.data.user.description
         // // console.log("dd"+res.data.user.image);
@@ -41,10 +42,11 @@ export const useUserStore = defineStore('user', {
 
         let res= await axios.get('api/v1/profile/')
 
-        this.$state.id= res.data.user.id
-        this.$state.firstName= res.data.user.first_name
-        this.$state.lastName= res.data.user.last_name
-        this.$state.email= res.data.user.email
+        const {data} = res.data;
+        this.$state.id= data.user.id
+        this.$state.firstName= data.user.first_name
+        this.$state.lastName= data.user.last_name
+        this.$state.email= data.user.email
         // this.$state.location= res.data.user.location
         // this.$state.description= res.data.user.description
         // // this.$state.image= res.data.user.image
