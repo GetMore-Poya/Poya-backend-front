@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import {useUserStore} from '../store/user-store'
 import HomeView from '../views/HomeView.vue'
+import DashboardView from '../views/HomeView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LoginView from '../views/LoginView.vue'
 import AccountView from '../views/AccountView.vue'
@@ -17,9 +18,9 @@ import PostById from '../views/account/PostById.vue'
 
 const routes = [
   {
-    path: '/dashboard',
+    path: '/',
     // beforeEnter:(to,from,next) =>{
-    //   useUserStore().id? next('/dashboard') : next('/')
+    //   useUserStore().id? next('/') : next('/dashboard')
     // },
     name: 'home',
     component: HomeView,
@@ -27,6 +28,14 @@ const routes = [
       requiresAuth: true
   }
 
+  },
+  {
+    path: '/dashboard',
+    // beforeEnter:(to,from,next) =>{
+    //   useUserStore().id? next('/') : next('/dashboard')
+    // },
+    name: 'dashboard',
+    component: DashboardView
   },
   {
     path: '/register',
