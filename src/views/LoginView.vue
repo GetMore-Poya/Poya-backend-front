@@ -60,43 +60,45 @@
     import { useRouter } from 'vue-router';
     import {useUserStore} from '../store/user-store.js'
     import {useProfileStore} from '../store/profile-store.js'
-    import {useSongStore} from '../store/song-store.js'
-    import {useVideoStore} from '../store/video-store.js'
-    import {usePostStore} from '../store/post-store.js'
+    // import {useSongStore} from '../store/song-store.js'
+    // import {useVideoStore} from '../store/video-store.js'
+    // import {usePostStore} from '../store/post-store.js'
 
     import TextInput from '../components/global/TextInput.vue'
 
     const router=useRouter()
     const userStore= useUserStore()
     const profileStore= useProfileStore()
-    const songStore= useSongStore()
-    const videoStore= useVideoStore()
-    const postStore= usePostStore()
+    // const songStore= useSongStore()
+    // const videoStore= useVideoStore()
+    // const postStore= usePostStore()
 
     let errors   =ref([])
 
     let email   =ref(null)
     let password =ref(null)
-
+    let logintype ="email"
     const login = async () => {
         errors.value =[]
         try{
-            let res = await axios.post('api/login', {
+            let res = await axios.post('api/v1/login', {
                 email: email.value,
                 password : password.value,
-
+                login_type : logintype
             });
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token 
 
             userStore.setUserDetails(res)
             await profileStore.fetchProfileById(userStore.id)
-            await songStore.fetchSongsByUserId(userStore.id)
-            await postStore.fetchPostsByUserId(userStore.id)
-            await videoStore.fetchVideosByUserId(userStore.id)
+            // await songStore.fetchSongsByUserId(userStore.id)
+            // await postStore.fetchPostsByUserId(userStore.id)
+            // await videoStore.fetchVideosByUserId(userStore.id)
 
-           router.push('/account/profile/'+userStore.id)
+        //    router.push('/account/profile/'+userStore.id)
+        router.push('/dashboard');
         }
         catch(err){
+            console.log(err);
             errors.value =err.response.data.errors
         }
     }

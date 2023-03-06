@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    id: null,
+    id: 0,
     token: null,
     firstName: null,
     lastName: null,
@@ -14,21 +14,22 @@ export const useUserStore = defineStore('user', {
   }),
   actions: {
      setUserDetails(res){
+        console.log(res.data)
         this.$state.id= res.data.user.id
         this.$state.token= res.data.token
         this.$state.firstName= res.data.user.first_name
         this.$state.lastName= res.data.user.last_name
         this.$state.email= res.data.user.email
-        this.$state.location= res.data.user.location
-        this.$state.description= res.data.user.description
-        // console.log("dd"+res.data.user.image);
-        if(res.data.user.image){
+        // this.$state.location= res.data.user.location
+        // this.$state.description= res.data.user.description
+        // // console.log("dd"+res.data.user.image);
+        // if(res.data.user.image){
 
-          this.$state.image= process.env.VUE_APP_API_URL+'images/users/' + res.data.user.image
-        }
-        else{
-          this.$state.image= process.env.VUE_APP_URL+'DefaultUserAvatar.png'
-        }
+        //   this.$state.image= process.env.VUE_APP_API_URL+'images/users/' + res.data.user.image
+        // }
+        // else{
+        //   this.$state.image= process.env.VUE_APP_URL+'DefaultUserAvatar.png'
+        // }
        
     },
 
@@ -37,21 +38,23 @@ export const useUserStore = defineStore('user', {
     },
 
     async fetchUser(){
-        let res= await axios.get('api/users/'+this.$state.id)
+
+        let res= await axios.get('api/v1/profile/')
 
         this.$state.id= res.data.user.id
         this.$state.firstName= res.data.user.first_name
         this.$state.lastName= res.data.user.last_name
-        this.$state.location= res.data.user.location
-        this.$state.description= res.data.user.description
-        // this.$state.image= res.data.user.image
-        if(res.data.user.image){
+        this.$state.email= res.data.user.email
+        // this.$state.location= res.data.user.location
+        // this.$state.description= res.data.user.description
+        // // this.$state.image= res.data.user.image
+        // if(res.data.user.image){
 
-          this.$state.image= process.env.VUE_APP_API_URL+'images/users/' + res.data.user.image
-        }
-        else{
-          this.$state.image= process.env.VUE_APP_URL +'DefaultUserAvatar.png'
-        }
+        //   this.$state.image= process.env.VUE_APP_API_URL+'images/users/' + res.data.user.image
+        // }
+        // else{
+        //   this.$state.image= process.env.VUE_APP_URL +'DefaultUserAvatar.png'
+        // }
     },
 
     clearUser(){
@@ -60,9 +63,9 @@ export const useUserStore = defineStore('user', {
         this.$state.firstName= null
         this.$state.lastName= null
         this.$state.email= null
-        this.$state.location= null
-        this.$state.description= null
-        this.$state.image= null
+        // this.$state.location= null
+        // this.$state.description= null
+        // this.$state.image= null
     }
   },
   persist:true

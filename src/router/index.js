@@ -17,12 +17,16 @@ import PostById from '../views/account/PostById.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/dashboard',
     // beforeEnter:(to,from,next) =>{
-    //   useUserStore().id? next('/') : next('/dashboard')
+    //   useUserStore().id? next('/dashboard') : next('/')
     // },
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    meta: {
+      requiresAuth: true
+  }
+
   },
   {
     path: '/register',
@@ -35,7 +39,8 @@ const routes = [
   {
     path: '/login',
     beforeEnter:(to,from,next) =>{
-      useUserStore().id? next('/account/profile/'+useUserStore().id) : next()
+      // useUserStore().id? next('/account/profile/'+useUserStore().id) : next()
+      useUserStore().id?next('/dashboard') : next()
     },
     name: 'login',
     component: LoginView

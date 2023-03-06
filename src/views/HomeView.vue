@@ -93,7 +93,7 @@
       <SectionTitleLineWithButton :icon="mdiAccountMultiple" title="Clients" />
 
       <NotificationBar color="info" :icon="mdiMonitorCellphone">
-        <b>Responsive table.</b> Collapses on mobile
+        <!-- <b>Responsive table.</b> Collapses on mobile -->
       </NotificationBar>
 
       <CardBox has-table>
@@ -138,4 +138,7 @@
   const clientBarItems = computed(() => mainStore.clients.slice(0, 4));
 
   const transactionBarItems = computed(() => mainStore.history);
+
+
+  
 </script>

@@ -6,7 +6,10 @@ import { useStyleStore } from "@/store/style";
 import AsideMenuList from "@/components/structure/AsideMenuList.vue";
 import AsideMenuItem from "@/components/structure/AsideMenuItem.vue";
 import BaseIcon from "@/components/structure/BaseIcon.vue";
+import { useUserStore } from '@/store/user-store';
+import { useRouter } from 'vue-router';
 
+import axios from "axios";
 defineProps({
   menu: {
     type: Array,
@@ -17,6 +20,8 @@ defineProps({
 const emit = defineEmits(["menu-click", "aside-lg-close-click"]);
 
 const styleStore = useStyleStore();
+const userStore=useUserStore()
+const router=useRouter()
 
 const logoutItem = computed(() => ({
   label: "Logout",
@@ -24,6 +29,25 @@ const logoutItem = computed(() => ({
   color: "info",
   isLogout: true,
 }));
+
+
+const logout= async () => {
+        console.log(logout)
+        try{
+                let res = await axios.post('api/v1/logout',{
+                    user_id: userStore.id
+                })
+                console.log(res.data)
+
+                userStore.clearUser()
+                router.push('/')
+
+        }catch(err){
+            console.log(err)
+        }
+
+    }
+
 
 const menuClick = (event, item) => {
   emit("menu-click", event, item);
@@ -50,7 +74,7 @@ const asideLgCloseClick = (event) => {
         <div
           class="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0"
         >
-          <b class="font-black">One</b>
+          <b class="font-black">Poya</b>
         </div>
         <button
           class="hidden lg:inline-block xl:hidden p-3"
@@ -71,7 +95,7 @@ const asideLgCloseClick = (event) => {
       </div>
 
       <ul>
-        <AsideMenuItem :item="logoutItem" @menu-click="menuClick" />
+        <AsideMenuItem :item="logoutItem" @menu-click="logout" @click="logout"/>
       </ul>
     </div>
   </aside>

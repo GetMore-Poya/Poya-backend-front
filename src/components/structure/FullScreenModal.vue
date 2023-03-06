@@ -108,7 +108,7 @@
     const logout= async () => {
         
         try{
-                let res = await axios.post('api/logout',{
+                let res = await axios.post('api/v1/logout',{
                     user_id: userStore.id
                 })
                 console.log(res.data)

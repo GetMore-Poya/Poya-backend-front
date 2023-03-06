@@ -12,6 +12,10 @@ import NavBar from "@/components/structure/NavBar.vue";
 import NavBarItemPlain from "@/components/structure/NavBarItemPlain.vue";
 import AsideMenu from "@/components/structure/AsideMenu.vue";
 import FooterBar from "@/components/structure/FooterBar.vue";
+// import axios from "axios";
+// import { useUserStore } from "@/store/user-store";
+
+// const userStore = useUserStore();
 
 useMainStore().setUser({
   name: "John Doe",
@@ -40,7 +44,27 @@ const menuClick = (event, item) => {
   }
 
   if (item.isLogout) {
-    //
+    
+    // const logout= async () => {
+        
+        // try{
+        //         let res = await axios.post('api/v1/logout',{
+        //             user_id: userStore.id
+        //         })
+        //         console.log(res.data)
+
+        //         userStore.clearUser()
+        //         // profileStore.clearProfile()
+        //         // songStore.clearSongs()
+        //         // videoStore.clearVideos()
+        //         // postStore.clearPosts()
+        //         router.push('/')
+
+        // }catch(err){
+        //     console.log(err)
+        // }
+
+    // }
   }
 };
 </script>
