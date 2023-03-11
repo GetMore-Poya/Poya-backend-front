@@ -9,7 +9,14 @@ import {
   // mdiResponsive,
   // mdiPalette,
 } from "@mdi/js";
+// import { useUserStore } from "./store/user-store";
 
+// const userStore = useUserStore();
+// userStore.id;
+// import { useUserStore } from "@/store/user-store";
+
+// const userStore = useUserStore();
+// const dd = userStore.id;
 export default [
   {
     to: "/dashboard",
@@ -42,7 +49,8 @@ export default [
   //   icon: mdiPalette,
   // },
   {
-    to: "/profile",
+    to: "account/profile/" + 1,
+    // path: "profile/:id",
     label: "Profile",
     icon: mdiAccountCircle,
   },

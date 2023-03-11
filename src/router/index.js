@@ -1,123 +1,124 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import {useUserStore} from '../store/user-store'
-import HomeView from '../views/HomeView.vue'
-import DashboardView from '../views/HomeView.vue'
-import RegisterView from '../views/RegisterView.vue'
-import LoginView from '../views/LoginView.vue'
-import AccountView from '../views/AccountView.vue'
-import ProfileSection from '../views/account/ProfileSection.vue'
-import EditProfile from '../views/account/EditProfile.vue'
-import AddSong from '../views/account/AddSong.vue'
-import DeleteSong from '../views/account/DeleteSong.vue'
-import AddYoutubeVideo from '../views/account/AddYoutubeVideo.vue'
-import DeleteYoutubeVideo from '../views/account/DeleteYoutubeVideo.vue'
-import CreatePost from '../views/account/CreatePost.vue'
-import EditPost from '@/views/account/EditPost.vue'
-import PostSection from '../views/account/PostSection.vue'
-import PostById from '../views/account/PostById.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import { useUserStore } from "../store/user-store";
+import HomeView from "../views/HomeView.vue";
+import DashboardView from "../views/HomeView.vue";
+import RegisterView from "../views/RegisterView.vue";
+import LoginView from "../views/LoginView.vue";
+import AccountView from "../views/AccountView.vue";
+import ProfileSection from "../views/account/ProfileSection.vue";
+import EditProfile from "../views/account/EditProfile.vue";
+import AddSong from "../views/account/AddSong.vue";
+import DeleteSong from "../views/account/DeleteSong.vue";
+import AddYoutubeVideo from "../views/account/AddYoutubeVideo.vue";
+import DeleteYoutubeVideo from "../views/account/DeleteYoutubeVideo.vue";
+import CreatePost from "../views/account/CreatePost.vue";
+import EditPost from "@/views/account/EditPost.vue";
+import PostSection from "../views/account/PostSection.vue";
+import PostById from "../views/account/PostById.vue";
 
 const routes = [
   {
-    path: '/',
+    path: "/",
     // beforeEnter:(to,from,next) =>{
     //   useUserStore().id? next('/') : next('/dashboard')
     // },
-    name: 'home',
+    name: "home",
     component: HomeView,
     meta: {
-      requiresAuth: true
-  }
-
+      requiresAuth: true,
+    },
   },
   {
-    path: '/dashboard',
+    path: "/dashboard",
     // beforeEnter:(to,from,next) =>{
     //   useUserStore().id? next('/') : next('/dashboard')
     // },
-    name: 'dashboard',
-    component: DashboardView
+    name: "dashboard",
+    component: DashboardView,
   },
   {
-    path: '/register',
-    beforeEnter:(to,from,next) =>{
-      useUserStore().id? next('/account/profile/'+useUserStore().id) : next()
+    path: "/register",
+    beforeEnter: (to, from, next) => {
+      useUserStore().id
+        ? next("/account/profile/" + useUserStore().id)
+        : next();
     },
-    name: 'register',
-    component: RegisterView
+    name: "register",
+    component: RegisterView,
   },
   {
-    path: '/login',
-    beforeEnter:(to,from,next) =>{
+    path: "/login",
+    beforeEnter: (to, from, next) => {
       // useUserStore().id? next('/account/profile/'+useUserStore().id) : next()
-      useUserStore().id?next('/dashboard') : next()
+      useUserStore().id ? next("/dashboard") : next();
     },
-    name: 'login',
-    component: LoginView
+    name: "login",
+    component: LoginView,
   },
   {
-    path: '/account',
-    beforeEnter:(to,from,next) =>{
-      useUserStore().id? next() : next('/login')
+    path: "/account",
+    beforeEnter: (to, from, next) => {
+      useUserStore().id ? next() : next("/login");
     },
     component: AccountView,
-    children:[
+    children: [
       {
-        path: 'profile/:id',
-        name: 'ProfileSection',
-        component: ProfileSection
+        path: "profile/:id",
+        name: "ProfileSection",
+        component: ProfileSection,
       },
       {
-        path: 'edit-profile/:id',
-        name: 'EditProfile',
-        component: EditProfile
+        path: "edit-profile/:id",
+        name: "EditProfile",
+        component: EditProfile,
       },
       {
-        path: 'add-song',
-        name: 'AddSong',
-        component: AddSong
+        path: "add-song",
+        name: "AddSong",
+        component: AddSong,
       },
       {
-        path: 'delete-song',
-        name: 'DeleteSong',
-        component: DeleteSong
+        path: "delete-song",
+        name: "DeleteSong",
+        component: DeleteSong,
       },
       {
-        path: 'add-youtube-video',
-        name: 'AddYoutubeVieo',
-        component: AddYoutubeVideo
+        path: "add-youtube-video",
+        name: "AddYoutubeVieo",
+        component: AddYoutubeVideo,
       },
       {
-        path: 'delete-youtube-video',
-        name: 'DeleteYoutubeVideo',
-        component: DeleteYoutubeVideo
+        path: "delete-youtube-video",
+        name: "DeleteYoutubeVideo",
+        component: DeleteYoutubeVideo,
       },
       {
-        path: 'create-post',
-        name: 'CreatePost',
-        component: CreatePost
+        path: "create-post",
+        name: "CreatePost",
+        component: CreatePost,
       },
       {
-        path: 'edit-post/:id',
-        name: 'EditPost',
-        component: EditPost
+        path: "edit-post/:id",
+        name: "EditPost",
+        component: EditPost,
       },
       {
-        path: 'posts',
-        name: 'PostSection',
-        component: PostSection
+        path: "posts",
+        name: "PostSection",
+        component: PostSection,
       },
       {
-        path: 'post-by-id/:id',
-        name: 'PostById',
-        component: PostById
-      }
-    ]
-  }
-]
+        path: "post-by-id/:id",
+        name: "PostById",
+        component: PostById,
+      },
+    ],
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

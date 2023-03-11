@@ -12,14 +12,14 @@ import NavBar from "@/components/structure/NavBar.vue";
 import NavBarItemPlain from "@/components/structure/NavBarItemPlain.vue";
 import AsideMenu from "@/components/structure/AsideMenu.vue";
 import FooterBar from "@/components/structure/FooterBar.vue";
-// import axios from "axios";
-// import { useUserStore } from "@/store/user-store";
 
-// const userStore = useUserStore();
+import { useUserStore } from "@/store/user-store";
+
+const userStore = useUserStore();
 
 useMainStore().setUser({
-  name: "John Doe",
-  email: "john@example.com",
+  name: userStore.firstName+" "+userStore.lastName,
+  email: userStore.id,
   avatar:
     "https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93",
 });
@@ -43,29 +43,29 @@ const menuClick = (event, item) => {
     styleStore.setDarkMode();
   }
 
-  if (item.isLogout) {
+  // if (item.isLogout) {
     
-    // const logout= async () => {
+  //   const logout= async () => {
         
-        // try{
-        //         let res = await axios.post('api/v1/logout',{
-        //             user_id: userStore.id
-        //         })
-        //         console.log(res.data)
+  //       try{
+  //               let res = await axios.post('api/v1/logout',{
+  //                   user_id: userStore.id
+  //               })
+  //               console.log(res.data)
 
-        //         userStore.clearUser()
-        //         // profileStore.clearProfile()
-        //         // songStore.clearSongs()
-        //         // videoStore.clearVideos()
-        //         // postStore.clearPosts()
-        //         router.push('/')
+  //               userStore.clearUser()
+  //               // profileStore.clearProfile()
+  //               // songStore.clearSongs()
+  //               // videoStore.clearVideos()
+  //               // postStore.clearPosts()
+  //               router.push('/')
 
-        // }catch(err){
-        //     console.log(err)
-        // }
+  //       }catch(err){
+  //           console.log(err)
+  //       }
 
-    // }
-  }
+  //   }
+  // }
 };
 </script>
 
@@ -122,12 +122,12 @@ const menuClick = (event, item) => {
       <slot />
       <FooterBar>
         Get more with
-        <a
+        <!-- <a
           href="https://tailwind-vue.justboil.me/"
           target="_blank"
           class="text-blue-600"
           >Premium version</a
-        >
+        > -->
       </FooterBar>
     </div>
   </div>
